@@ -15,3 +15,6 @@ Download [alignment ModelNet](https://shapenet.cs.stanford.edu/media/modelnet40_
 ```
 python train_modelnet.py --process_data
 ```
+
+## Performance
+Accuracy: 89.76%
