@@ -44,7 +44,7 @@ def test(model, loader, num_class=40, vote_num=1):
         
 
         points = points.transpose((0, 2, 1))
-        vote_pool = paddle.zeros((target.size()[0], num_class))
+        vote_pool = paddle.zeros((target.shape[0], num_class))
         for _ in range(vote_num):
             pred, _ = model(points)
             vote_pool += pred
@@ -82,7 +82,7 @@ def main(args):
 
     '''DATA LOADING'''
     log_string('Load dataset ...')
-    data_path = 'data/modelnet40_normal_resampled/'
+    data_path = 'dataset/modelnet40_normal_resampled/'
 
     test_dataset = ModelNetDataset(root=data_path, args=args, split='test', process_data=False)
     testDataLoader = paddle.io.DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=10)
