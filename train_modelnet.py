@@ -146,7 +146,7 @@ def main(args):
             points = provider.random_point_dropout(points)
             points[:, :, 0:3] = provider.random_scale_point_cloud(points[:, :, 0:3])
             points[:, :, 0:3] = provider.shift_point_cloud(points[:, :, 0:3])
-            points = paddle.Tensor(points)
+            points = paddle.to_tensor(points)
             points = points.transpose((0, 2, 1))
 
             # points, target = points.cuda(), target.cuda()

@@ -125,7 +125,7 @@ class ModelNetDataset(Dataset):
         if not self.use_normals:
             point_set = point_set[:, 0:3]
 
-        return point_set, label[0]
+        return point_set, label[0].astype(np.int64)
 
     def __getitem__(self, index):
         return self._get_item(index)
