@@ -32,7 +32,7 @@ def parse_args():
     parser.add_argument('--log_dir', type=str, required=True, help='Experiment root')
     parser.add_argument('--use_normals', action='store_true', default=False, help='use normals')
     parser.add_argument('--use_uniform_sample', action='store_true', default=False, help='use uniform sampiling')
-    parser.add_argument('--num_votes', type=int, default=3, help='Aggregate classification scores with voting')
+    parser.add_argument('--num_votes', type=int, default=1, help='Aggregate classification scores with voting')
     return parser.parse_args()
 
 def test(model, loader, num_class=40, vote_num=1):
@@ -85,7 +85,7 @@ def main(args):
     data_path = 'dataset/modelnet40_normal_resampled/'
 
     test_dataset = ModelNetDataset(root=data_path, args=args, split='test', process_data=False)
-    testDataLoader = paddle.io.DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=10)
+    testDataLoader = paddle.io.DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False, num_workers=1)
 
     '''MODEL LOADING'''
     num_class = args.num_category

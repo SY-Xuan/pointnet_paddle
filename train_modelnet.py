@@ -45,17 +45,18 @@ def test(model, args, num_class=40):
     mean_correct = []
 
     model.eval()
-    with paddle.no_grad():
-        for j, (points, target) in tqdm(enumerate(testDataLoader), total=len(testDataLoader)):
+    
+    for j, (points, target) in tqdm(enumerate(testDataLoader), total=len(testDataLoader)):
 
-            # points, target = points.cuda(), target.cuda()
+        # points, target = points.cuda(), target.cuda()
 
-            points = points.transpose((0, 2, 1))
+        points = points.transpose((0, 2, 1))
+        with paddle.no_grad():
             pred, _ = model(points)
-            pred_choice = paddle.argmax(pred, axis=1)
-            
-            correct = pred_choice.equal(target).astype("float32").sum()
-            mean_correct.append(correct.numpy()[0] / float(points.shape[0]))
+        pred_choice = paddle.argmax(pred, axis=1)
+        
+        correct = pred_choice.equal(target).astype("float32").sum()
+        mean_correct.append(correct.numpy()[0] / float(points.shape[0]))
 
     instance_acc = np.mean(mean_correct)
 

@@ -21,4 +21,4 @@ python test_modelnet.py --log_dir path_to_model
 ```
 
 ## Performance
-Accuracy: 89.76%
+Accuracy: 90.20%
